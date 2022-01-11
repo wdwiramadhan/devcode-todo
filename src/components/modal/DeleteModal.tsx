@@ -21,6 +21,7 @@ function DeleteModal(props: DeleteModalProps) {
         onClose={onClose}
         as="div"
         className="fixed inset-0 z-10 overflow-y-auto "
+        data-cy="modal-delete-cancel-button"
       >
         <div
           className="min-h-screen flex justify-center items-center"
@@ -61,10 +62,15 @@ function DeleteModal(props: DeleteModalProps) {
                 <span className="font-bold">{`“${deleteModal.item}”`}</span>
               </h3>
               <div className="mt-[40px] sm:mt-[46px] flex justify-center gap-[20px]">
-                <Button variant="dark" onClick={onClose}>
+                <Button
+                  data-cy="modal-delete-cancel-button"
+                  variant="dark"
+                  onClick={onClose}
+                >
                   Batal
                 </Button>
                 <Button
+                  data-cy="modal-delete-confirm-button"
                   variant="danger"
                   onClick={() => onDelete(deleteModal.dataId)}
                   isLoading={isLoading}

@@ -140,7 +140,10 @@ function ItemModal(props: any) {
             >
               <div className="px-[22px] sm:px-[30px] pt-[19px] pb-[17px] sm:pt-[24px] sm:pb-[19px] border-b">
                 <div className="flex justify-between items-center">
-                  <h1 className="text-secondary-1 text-base sm:text-lg font-semibold leading-6 sm:leading-[27px]">
+                  <h1
+                    data-cy="modal-add-title"
+                    className="text-secondary-1 text-base sm:text-lg font-semibold leading-6 sm:leading-[27px]"
+                  >
                     {`${
                       itemModal.type === TypeActionState.CREATE
                         ? "Tambah"
@@ -157,6 +160,7 @@ function ItemModal(props: any) {
                   <label
                     htmlFor="title"
                     className="text-xs font-medium leading-5 text-secondary-1"
+                    data-cy="modal-add-name-title"
                   >
                     NAMA ITEM
                   </label>
@@ -168,6 +172,7 @@ function ItemModal(props: any) {
                     onChange={(e) =>
                       setItem({ ...item, title: e.target.value })
                     }
+                    data-cy="modal-add-name-input"
                     className="focus:ring-primary focus:border-primary w-full text-sm sm:text-base leading-[21px] sm:leading-6 font-normal border-secondary-5 text-secondary-1 rounded py-3.5 px-5"
                   />
                 </div>
@@ -175,6 +180,7 @@ function ItemModal(props: any) {
                   <label
                     htmlFor="title"
                     className="text-xs font-medium leading-5 text-secondary-1"
+                    data-cy="modal-add-priority-title"
                   >
                     PRIORITY
                   </label>
@@ -184,7 +190,10 @@ function ItemModal(props: any) {
                     onChange={(value) => setItem({ ...item, priority: value })}
                   >
                     <div className="relative mt-1">
-                      <Listbox.Button className="flex items-center relative py-3.5 px-5 w-full sm:w-[210px] bg-white rounded border focus:outline-none ">
+                      <Listbox.Button
+                        data-cy="modal-add-priority-dropdown"
+                        className="flex items-center relative py-3.5 px-5 w-full sm:w-[210px] bg-white rounded border focus:outline-none "
+                      >
                         <div className="flex items-center">
                           <div
                             className={clsx(
@@ -241,6 +250,7 @@ function ItemModal(props: any) {
               <div className="px-[22px] sm:px-[30px] pt-[15px] pb-[19px] border-t">
                 <div className="flex justify-end">
                   <Button
+                    data-cy="modal-add-save-button"
                     variant="primary"
                     isDisabled={item.title.length === 0}
                     isLoading={isLoading}
@@ -577,9 +587,10 @@ function Todo() {
                 <div data-cy="sort-parent">
                   <Menu.Items className="z-10 absolute right-0 w-[187px] sm:w-[235px] mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     {sortMenus.map((sortMenu, idx) => (
-                      <div key={idx} data-cy="sort-selection">
+                      <div key={idx}>
                         <Menu.Item>
                           <button
+                            data-cy="sort-selection"
                             className="flex w-full justify-between items-center py-[12px] px-[16px] sm:py-[14px] sm:px-[21px]"
                             onClick={() => setActiveSort(idx + 1)}
                           >

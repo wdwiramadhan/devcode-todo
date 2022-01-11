@@ -48,8 +48,11 @@ function Toast(toastProps: ToastProps) {
               )}
               data-cy="modal-information"
             >
-              {icon}
-              <div className="text-children-1 font-medium text-sm leading-[21px]">
+              <div data-cy="modal-information-icon">{icon}</div>
+              <div
+                data-cy="modal-information-title"
+                className="text-children-1 font-medium text-sm leading-[21px]"
+              >
                 {information}
               </div>
             </div>
