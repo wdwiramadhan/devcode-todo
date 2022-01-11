@@ -175,47 +175,48 @@ function Dashboard() {
         {todos.status === StateStatus.RESOLVED && (
           <div className="mt-[49px] grid grid-cols-2 md:grid-cols-4 gap-5">
             {todos.data.map((todo: ITodo) => (
-              <div data-cy="activity-item" key={todo.id}>
-                <Link to={`/detail/${todo.id}`}>
-                  <div
-                    data-cy="activity-item"
-                    className={clsx(
-                      "flex flex-col justify-between w-full bg-white border-0 shadow-[0_6px_10px_0_rgba(0,0,0,0.1)] rounded-xl",
-                      "px-[17px] pt-[12px] pb-[17px]  md:px-[27px] md:pt-[22px] md:pb-[25px] h-[150px] md:h-[234px]"
-                    )}
+              <Link
+                key={todo.id}
+                to={`/detail/${todo.id}`}
+                data-cy="activity-item"
+              >
+                <div
+                  className={clsx(
+                    "flex flex-col justify-between w-full bg-white border-0 shadow-[0_6px_10px_0_rgba(0,0,0,0.1)] rounded-xl",
+                    "px-[17px] pt-[12px] pb-[17px]  md:px-[27px] md:pt-[22px] md:pb-[25px] h-[150px] md:h-[234px]"
+                  )}
+                >
+                  <h3
+                    data-cy="activity-item-title"
+                    className="text-sm sm:text-lg text-secondary-1 font-bold leading-[21px] sm:leading-[27px]"
                   >
-                    <h3
-                      data-cy="activity-item-title"
-                      className="text-sm sm:text-lg text-secondary-1 font-bold leading-[21px] sm:leading-[27px]"
+                    {todo.title}
+                  </h3>
+                  <div className="flex text-secondary-3 items-center justify-between bottom-0">
+                    <div
+                      data-cy="activity-item-date"
+                      className="text-[10px] sm:text-sm font-medium leading-[15px] sm:leading-[21px]"
                     >
-                      {todo.title}
-                    </h3>
-                    <div className="flex text-secondary-3 items-center justify-between bottom-0">
-                      <div
-                        data-cy="activity-item-date"
-                        className="text-[10px] sm:text-sm font-medium leading-[15px] sm:leading-[21px]"
-                      >
-                        {utcToLocal(todo.created_at, "D MMMM YYYY")}
-                      </div>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setDeleteModal({
-                            ...deleteModal,
-                            isOpen: true,
-                            dataId: todo.id,
-                            item: todo.title,
-                          });
-                        }}
-                        data-cy="activity-item-delete-button"
-                      >
-                        <TrashIcon className="h-3 w-3 sm:h-6 sm:w-6" />
-                      </button>
+                      {utcToLocal(todo.created_at, "D MMMM YYYY")}
                     </div>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setDeleteModal({
+                          ...deleteModal,
+                          isOpen: true,
+                          dataId: todo.id,
+                          item: todo.title,
+                        });
+                      }}
+                      data-cy="activity-item-delete-button"
+                    >
+                      <TrashIcon className="h-3 w-3 sm:h-6 sm:w-6" />
+                    </button>
                   </div>
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
         )}
